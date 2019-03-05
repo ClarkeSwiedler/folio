@@ -2,6 +2,7 @@ import React from 'react';
 import { Paper, CssBaseline, Theme, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { useLandingText } from './LandingHandler';
+import { LandingContent } from './LandingContent';
 
 const useStyles = makeStyles((theme: Theme) => ({
 	main: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 interface LandingPageProps {
-	welcomeMessage: string;
+	welcomeMessage: LandingContent;
 }
 
 export function LandingPage(props: LandingPageProps) {
@@ -29,7 +30,8 @@ export function LandingPage(props: LandingPageProps) {
 		<div className={classes.main}>
 			<CssBaseline />
 			<Paper className={classes.root}>
-				<Typography variant='h3' className={classes.text}>{props.welcomeMessage.toString()}</Typography>
+				<Typography variant='h3' className={classes.text}>{props.welcomeMessage.title}</Typography>
+				<Typography variant='h5' className={classes.text}>{props.welcomeMessage.subtitle}</Typography>
 			</Paper>
 		</div>
 	)

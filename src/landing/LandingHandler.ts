@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { landingURL } from "../util/urls";
+import { LandingContent } from "./LandingContent";
 
-export function useLandingText():{error: any, loading: boolean, landingText: string} {
+export function useLandingText():{error: any, loading: boolean, landingText: LandingContent} {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [landingText, setLandingText] = useState(null);
@@ -13,7 +14,7 @@ export function useLandingText():{error: any, loading: boolean, landingText: str
     }).then(response => {
       setLoading(false);
       if (response.ok) {
-        response.text()
+        response.json()
         .then(data => {
           console.log(data);
           setLandingText(data);
