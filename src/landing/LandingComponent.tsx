@@ -29,7 +29,7 @@ export function LandingPage(props: LandingPageProps) {
 		<div className={classes.main}>
 			<CssBaseline />
 			<Paper className={classes.root}>
-				<Typography variant='h3' align='center' className={classes.text}>{props.welcomeMessage}</Typography>
+				<Typography variant='h3' className={classes.text}>{props.welcomeMessage.toString()}</Typography>
 			</Paper>
 		</div>
 	)
@@ -38,10 +38,9 @@ export function LandingPage(props: LandingPageProps) {
 export function LandingComponent() {
 	const {error, loading, landingText} = useLandingText()
 
-	if (error) return (<div><h3>Something bad happened</h3></div>)
+	if (error) return (<div><h3>Something Terrible</h3></div>)
 	if (loading) return (<div><h3>Loading</h3></div>)
 	if (landingText) {
-		console.log(landingText)	
 		return <LandingPage welcomeMessage={landingText}/>
 	}
 	return null;
