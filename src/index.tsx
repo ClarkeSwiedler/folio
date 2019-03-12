@@ -13,12 +13,15 @@ const Render = () => {
 	const theme = createMuiTheme({
 		palette: {
 			type: 'dark',
-			primary: lightBlue,
+			primary: blueGrey,
 			background: {
 				paper: blueGrey[700],
 				default: blueGrey[900]
 			}
-		}, 
+		},
+		typography: {
+			useNextVariants: true,
+		}
 	})	
 	return (
 		<ThemeProvider theme={theme}>

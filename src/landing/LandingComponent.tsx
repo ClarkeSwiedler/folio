@@ -7,15 +7,31 @@ import { LandingContent } from './LandingContent';
 const useStyles = makeStyles((theme: Theme) => ({
 	main: {
 		backgroundColor: theme.palette.primary.dark,
+
+		width: '100%',
+
 	},
 	root: {
-		width: 900,
-		marginLeft: 'auto',
-		marginRight: 'auto',
-		marginTop: theme.spacing.unit * 2,
+		width: 'auto',
+		marginLeft: theme.spacing.unit * 2,
+		marginRight: theme.spacing.unit * 2,
+		[theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+			width: 600,
+			marginLeft: 'auto',
+			marginRight: 'auto',
+		},
+		minHeight: 400,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundImage: 'linear-gradient(to bottom right, Gainsboro, SkyBlue, DarkSlateGrey)',
 	},
-	text : {
-		
+	textArea: {
+		flex: 'none',
+	},
+	text: {
+		textShadow: '0px 0px 12px white, 1px 1px 3px grey',
+		color: 'rgba(240,240,255,1)',
 	}
 }))
 
@@ -30,20 +46,26 @@ export function LandingPage(props: LandingPageProps) {
 		<div className={classes.main}>
 			<CssBaseline />
 			<Paper className={classes.root}>
-				<Typography variant='h3' className={classes.text}>{props.welcomeMessage.title}</Typography>
-				<Typography variant='h5' className={classes.text}>{props.welcomeMessage.subtitle}</Typography>
+				<div className={classes.textArea}>
+					<Typography align='center' variant='h1' classes={{ root: classes.text }}>{props.welcomeMessage.title}</Typography>
+					<Typography align='center' variant='h5' className={classes.text}>{props.welcomeMessage.subtitle}</Typography>
+				</div>
 			</Paper>
 		</div>
 	)
 }
 
 export function LandingComponent() {
-	const {error, loading, landingText} = useLandingText()
+	const { error, loading, landingText } = useLandingText()
 
-	if (error) return (<div><h3>Something Terrible</h3></div>)
-	if (loading) return (<div><h3>Loading</h3></div>)
-	if (landingText) {
-		return <LandingPage welcomeMessage={landingText}/>
-	}
-	return null;
+	const text = {title: 'Folio', subtitle: 'Development and Design'}
+
+	// if (error) return (<div><h3>Something Terrible</h3></div>)
+	// if (loading) return (<div><h3>Loading</h3></div>)
+	// if (landingText) {
+	// 	return <LandingPage welcomeMessage={landingText}/>
+	// }
+	// return null;
+	return <LandingPage welcomeMessage={text} />
+
 }
